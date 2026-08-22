@@ -1,120 +1,120 @@
 ---
 name: model-router
-description: Recommends which LLM and which reasoning-effort level to use for the next step of a task, using a scoring matrix across Claude, OpenAI, Gemini and open-weight models. Use this at the end of EVERY step of ANY multi-step task — coding, research, data work, writing, ops — even when the user never mentions models, cost, or effort. Also use whenever the user asks "model nào", "effort bao nhiêu", "dùng model gì", which model should I use, should I switch models, is this worth Opus, can a cheaper model do this, how do I cut token cost, or asks to route/pick/downgrade/upgrade a model for a task.
+description: Recommends which LLM and which reasoning-effort level to use for the next step of a task, using a scoring matrix across Claude, OpenAI, Gemini, and open-weight models. Use this at the end of EVERY step of ANY multi-step task—coding, research, data work, writing, or ops—even when the user never mentions models, cost, or effort. Also use whenever the user asks which model to use, how much effort to use, whether to switch models, whether a task is worth Opus, whether a cheaper model can handle it, how to reduce token costs, or asks to route, pick, downgrade, or upgrade a model for a task.
 ---
 
 # Model Router
 
-Cuối mỗi bước của một task nhiều bước, chèn một bảng nhỏ đề xuất model + effort cho **bước kế tiếp**.
+At the end of each step in a multi-step task, insert a small table recommending a model and effort level for the **next step**.
 
-Lý do tồn tại: mặc định người ta chạy cả task trên một model duy nhất — hoặc quá nặng (đốt tiền cho việc đổi tên file), hoặc quá nhẹ (Haiku viết migration script). Chi phí và chất lượng đều nằm ở chỗ chọn sai cho **từng bước**, không phải cho cả task. Bảng này ép việc chọn lại ở mỗi ranh giới bước.
+Why this exists: people default to running an entire task on one model—either one that is too powerful (wasting money on renaming a file) or too weak (having Haiku write a migration script). Cost and quality hinge on choosing the wrong model for **individual steps**, not for the task as a whole. This table forces a fresh choice at every step boundary.
 
-## Khi nào chạy
+## When to run
 
-Bất kỳ task nào có ≥2 bước. Chèn bảng sau khi báo kết quả bước vừa xong, trước khi làm bước kế.
+Use this for any task with at least two steps. Insert the table after reporting the result of the completed step and before starting the next one.
 
-Không chèn khi: hội thoại thuần túy, câu hỏi một lượt, hoặc bước cuối cùng (không còn bước kế — thay bằng một dòng tổng kết chi phí nếu task dài).
+Do not insert it for casual conversation, a one-shot question, or the final step. When a long task has no next step, replace it with a one-line cost summary.
 
-## Chấm điểm: 4 tín hiệu, mỗi tín hiệu 0–2
+## Scoring: four signals, each scored 0–2
 
-Chấm cho **bước kế tiếp**, không phải cho task tổng thể. Đây là lỗi hay gặp nhất: task tổng thể nặng không có nghĩa mọi bước trong nó đều nặng.
+Score the **next step**, not the overall task. This is the most common mistake: a demanding task does not mean every step in it is demanding.
 
-**A — Mơ hồ.** 0: spec rõ, chỉ thi hành. 1: vài chỗ phải tự suy luận. 2: phải tự định nghĩa vấn đề trước khi giải.
+**A — Ambiguity.** 0: the specification is clear; just execute it. 1: some details require inference. 2: the problem must be defined before it can be solved.
 
-**B — Chiều sâu suy luận.** 0: một phép tra/biến đổi. 1: 2–4 bước phụ thuộc nhau. 2: ≥5 bước, hoặc phải giữ một bất biến toàn cục xuyên suốt.
+**B — Reasoning depth.** 0: one lookup or transformation. 1: two to four dependent operations. 2: at least five operations, or a global invariant must be maintained throughout.
 
-**C — Hậu quả nếu sai.** 0: chỉ đọc, sai thì chạy lại. 1: ghi file/sinh code, sửa được. 2: không hoàn tác được — deploy, migration, xóa dữ liệu, gửi ra ngoài, hoặc con số người dùng sẽ trích dẫn cho người khác.
+**C — Consequences of error.** 0: read-only; retry if wrong. 1: writes files or generates code and can be fixed. 2: irreversible—deployment, migration, data deletion, sending something externally, or producing a figure the user will cite to others.
 
-**D — Tải ngữ cảnh.** 0: dưới ~5k token. 1: nhiều nguồn nhưng xử lý độc lập từng cái. 2: phải đối chiếu chéo nhiều nguồn, hoặc giữ một codebase lớn trong đầu.
+**D — Context load.** 0: under approximately 5K tokens. 1: multiple sources that can each be processed independently. 2: multiple sources must be cross-checked, or a large codebase must be kept in mind.
 
-Tổng 0–8 → bậc:
+Map the total score of 0–8 to a tier:
 
-| Tổng | Bậc | Tên |
+| Total | Tier | Name |
 |---|---|---|
-| 0–2 | 1 | Rẻ/nhanh |
-| 3–4 | 2 | Chủ lực |
-| 5–6 | 3 | Nặng |
-| 7–8 | 4 | Biên |
+| 0–2 | 1 | Cheap/fast |
+| 3–4 | 2 | Workhorse |
+| 5–6 | 3 | Heavy |
+| 7–8 | 4 | Frontier |
 
-## Bảng tuyển chọn
+## Selection table
 
-| Bậc | Anthropic | OpenAI | Google | Open-weight | Effort |
+| Tier | Anthropic | OpenAI | Google | Open-weight | Effort |
 |---|---|---|---|---|---|
 | 1 | Haiku 4.5 | gpt-5.6-luna | Gemini 3.5 Flash-Lite | DeepSeek V4 Flash | `low` / `minimal` |
 | 2 | Sonnet 5 | gpt-5.6-terra | Gemini 3.7 Flash | GLM 5.2 | `medium` |
-| 3 | Sonnet 5 hoặc Opus 5 | gpt-5.6-sol | Gemini 3.7 Flash | DeepSeek V4 Pro | `high` |
+| 3 | Sonnet 5 or Opus 5 | gpt-5.6-sol | Gemini 3.7 Flash | DeepSeek V4 Pro | `high` |
 | 4 | Opus 5 / Fable 5 | gpt-5.6-sol | Gemini 3.7 Flash | Kimi K3 | `xhigh` → `max` |
 
-Chọn cột theo thế mạnh, không theo thói quen:
+Choose a column by strength, not habit:
 
-- **Agentic coding, sửa repo nhiều file, phiên chạy dài** → Anthropic
-- **Multimodal (ảnh/video/audio), ngữ cảnh cực dài mà rẻ** → Google
-- **Layout/thẩm mỹ thị giác, tool orchestration lập trình** → OpenAI
-- **Dữ liệu không được rời hạ tầng, hoặc bulk cực lớn** → open-weight
+- **Agentic coding, multi-file repository edits, long-running sessions** → Anthropic
+- **Multimodal work (image/video/audio), extremely long context at low cost** → Google
+- **Layout and visual judgment, programmable tool orchestration** → OpenAI
+- **Data that cannot leave the infrastructure, or extremely large bulk workloads** → open-weight
 
-Giá và thang effort đầy đủ: `references/roster.md`. Ánh xạ chi tiết theo từng loại tác vụ (research, viết, phân tích số liệu, debug, ops): `references/matrix.md`.
+For complete pricing and effort scales, see `references/roster.md`. For detailed mappings by task type (research, writing, data analysis, debugging, and ops), see `references/matrix.md`.
 
-## Luật ghi đè
+## Override rules
 
-Áp dụng sau khi đã có bậc. Ghi đè thắng điểm số.
+Apply these after determining the tier. Overrides take precedence over the score.
 
-1. **Không hoàn tác được** (C=2) → tăng 1 nấc effort, **không** được hạ bậc để tiết kiệm. Kèm một bước xác nhận trước khi chạy.
-2. **Cần phản hồi <2s** hoặc đang nói trực tiếp với người dùng cuối → hạ 1 bậc, effort ≤ `low`.
-3. **Bulk ≥500 lần gọi** → hạ 1 bậc, effort `low`, dùng batch API (giảm ~50%).
-4. **Dữ liệu nhạy cảm/on-prem** → chỉ cột open-weight, giữ nguyên bậc.
-5. **Bước cơ học** (chạy lệnh, đổi tên, format, commit) → luôn Bậc 1, bất kể task tổng thể nặng cỡ nào.
-6. **Ngữ cảnh >200k token** → chỉ model có cửa sổ ≥1M, hoặc chia nhỏ trước.
-7. **Vừa thất bại** → không lặp lại cùng cấu hình. Đổi đúng một trục: +1 bậc **hoặc** đổi nhà cung cấp, không đổi cả hai (nếu đổi cả hai thì không biết cái nào cứu được). Thất bại lần thứ hai → dừng, hỏi người dùng, đừng leo thang tiếp.
+1. **Irreversible** (C=2) → increase effort by one level and **do not** lower the tier to save money. Include a confirmation step before execution.
+2. **Response required in under two seconds**, or speaking directly to an end user → lower the tier by one and use effort no higher than `low`.
+3. **Bulk workload of at least 500 calls** → lower the tier by one, use `low` effort, and use a batch API (approximately 50% cheaper).
+4. **Sensitive or on-premises data** → use only the open-weight column and keep the same tier.
+5. **Mechanical step** (run a command, rename, format, or commit) → always Tier 1, regardless of how demanding the overall task is.
+6. **Context over 200K tokens** → use only a model with a context window of at least 1M tokens, or split the context first.
+7. **The previous attempt failed** → do not repeat the same configuration. Change exactly one axis: increase the tier by one **or** switch providers, but not both. If both change, it is impossible to know which change resolved the problem. After a second failure, stop and ask the user instead of escalating again.
 
 ## Format
 
-Đúng một bảng, ngay cuối bước:
+Use exactly one table at the end of the step:
 
 ```
-| Bước kế | Model | Effort | Điểm | Lý do |
+| Next step | Model | Effort | Score | Reason |
 |---|---|---|---|---|
-| Viết migration script | Opus 5 | high | 6 (A1 B2 C2 D1) | ghi DB, không hoàn tác |
+| Write migration script | Opus 5 | high | 6 (A1 B2 C2 D1) | writes to DB; irreversible |
 
-Dự phòng: schema rối hơn dự kiến → Opus 5 / xhigh.
+Fallback: schema is more complex than expected → Opus 5 / xhigh.
 ```
 
-Cột "Lý do" tối đa ~12 từ — nó là ghi chú, không phải đoạn văn. Dòng "Dự phòng" chỉ viết khi có rủi ro thật; bỏ hẳn nếu bước quá rõ ràng.
+Keep the "Reason" column to approximately 12 words at most—it is a note, not a paragraph. Include the "Fallback" line only when there is a genuine risk; omit it entirely when the next step is straightforward.
 
-**Nếu cấu hình không đổi so với bước trước**, đừng lặp lại bảng — viết một dòng: `→ giữ nguyên Sonnet 5 / medium.` Bảng lặp lại y hệt 5 lần liên tiếp là nhiễu, và người đọc sẽ bắt đầu bỏ qua nó, kể cả lúc nó thực sự đổi.
+**If the configuration is unchanged from the previous step**, do not repeat the table. Write one line instead: `→ keep Sonnet 5 / medium.` Repeating the same table five times in a row creates noise, and readers will begin to ignore it even when it eventually changes.
 
-## Ví dụ
+## Examples
 
-**Bước vừa xong:** đọc 3 file config, tìm chỗ khai báo timeout.
-**Bước kế:** sửa timeout ở 3 nơi cho khớp.
+**Completed step:** read three configuration files and locate the timeout declarations.
+**Next step:** make the timeout consistent in all three places.
 
-| Bước kế | Model | Effort | Điểm | Lý do |
+| Next step | Model | Effort | Score | Reason |
 |---|---|---|---|---|
-| Sửa timeout 3 file | Haiku 4.5 | low | 2 (A0 B1 C1 D0) | sửa cơ học, đã biết chính xác vị trí |
+| Update timeout in three files | Haiku 4.5 | low | 2 (A0 B1 C1 D0) | mechanical edit; exact locations are known |
 
 ---
 
-**Bước vừa xong:** dựng xong schema cho pipeline ingest.
-**Bước kế:** chọn chiến lược backfill cho 400M dòng đang chạy production.
+**Completed step:** finished the schema for the ingestion pipeline.
+**Next step:** choose a backfill strategy for 400M rows in production.
 
-| Bước kế | Model | Effort | Điểm | Lý do |
+| Next step | Model | Effort | Score | Reason |
 |---|---|---|---|---|
-| Chiến lược backfill | Opus 5 | xhigh | 7 (A2 B2 C2 D1) | production, không hoàn tác, nhiều ràng buộc |
+| Choose backfill strategy | Opus 5 | xhigh | 7 (A2 B2 C2 D1) | production, irreversible, many constraints |
 
-Dự phòng: nếu bí sau 1 vòng → đổi trục sang gpt-5.6-sol thay vì leo effort.
+Fallback: if stuck after one attempt → switch providers to gpt-5.6-sol instead of increasing effort.
 
 ---
 
-**Bước vừa xong:** chốt dàn ý báo cáo thị trường.
-**Bước kế:** đọc 40 bài báo, trích số liệu doanh thu.
+**Completed step:** finalized the outline for a market report.
+**Next step:** read 40 articles and extract revenue figures.
 
-| Bước kế | Model | Effort | Điểm | Lý do |
+| Next step | Model | Effort | Score | Reason |
 |---|---|---|---|---|
-| Trích số liệu 40 nguồn | Gemini 3.5 Flash-Lite | low | 3 (A0 B1 C1 D1) | trích xuất lặp lại, mỗi nguồn độc lập, rẻ |
+| Extract figures from 40 sources | Gemini 3.5 Flash-Lite | low | 3 (A0 B1 C1 D1) | repetitive extraction; each source is independent and cheap |
 
-Dự phòng: nguồn nào có bảng lồng nhau → đẩy riêng nguồn đó lên Sonnet 5 / medium.
+Fallback: route any source with nested tables separately to Sonnet 5 / medium.
 
-Lưu ý ở ví dụ cuối: điểm 3 rơi vào Bậc 2, nhưng luật bulk kéo xuống Bậc 1. Ghi đè thắng điểm — và ghi rõ trong "Lý do" để người đọc không tưởng là chấm sai.
+Note the last example: a score of 3 maps to Tier 2, but the bulk rule lowers it to Tier 1. Overrides take precedence over the score—state that in the "Reason" column so readers do not assume the scoring is wrong.
 
-## Giữ độ trung thực
+## Maintain accuracy
 
-Tên model và giá thay đổi nhanh. Nếu người dùng nhắc tới một model không có trong `references/roster.md`, hoặc nghi ngờ bảng đã cũ, hãy tra web trước khi đề xuất thay vì đoán từ trí nhớ — đề xuất một model không tồn tại còn tệ hơn không đề xuất gì. Roster ghi ngày cập nhật cuối ở đầu file.
+Model names and prices change quickly. If a user mentions a model that is not in `references/roster.md`, or if the table may be outdated, search the web before making a recommendation instead of guessing from memory. Recommending a nonexistent model is worse than making no recommendation. The roster begins with its most recent update date.
