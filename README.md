@@ -6,7 +6,7 @@ A collection of Claude skills.
 
 | Skill | Description |
 |---|---|
-| [model-router](./model-router/) | Recommends the appropriate model and effort level at the end of each step using a scoring matrix (Claude / OpenAI / Gemini / open-weight) |
+| [model-router](./model-router/) | Routes each step to a model and effort level; complex steps also offer coordinator-led or direct execution with per-agent model checks |
 | [skill-limit-recovery](./skill-limit-recovery/) | Handles limit-related situations: context window, session limit, weekly quota, provider overload, and unsafe interruption |
 
 ## Install a skill

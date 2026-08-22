@@ -1,6 +1,6 @@
 ---
 name: model-router
-description: Recommends which LLM and which reasoning-effort level to use for the next step of a task, using a scoring matrix across Claude, OpenAI, Gemini, and open-weight models. Use this at the end of EVERY step of ANY multi-step task—coding, research, data work, writing, or ops—even when the user never mentions models, cost, or effort. Also use whenever the user asks which model to use, how much effort to use, whether to switch models, whether a task is worth Opus, whether a cheaper model can handle it, how to reduce token costs, or asks to route, pick, downgrade, or upgrade a model for a task.
+description: Routes the next step of a task to an LLM and reasoning-effort level using a scoring matrix across Claude, OpenAI, Gemini, and open-weight models. For complex steps, also requires a choice between coordinator-led agents and direct execution and model-checks every proposed agent role. Use this at the end of EVERY step of ANY multi-step task—coding, research, data work, writing, or ops—even when the user never mentions models, cost, or effort. Also use whenever the user asks which model to use, how much effort to use, whether to switch models, whether a task is worth Opus, whether a cheaper model can handle it, how to reduce token costs, or asks to route, pick, downgrade, or upgrade a model for a task.
 ---
 
 # Model Router
@@ -36,6 +36,44 @@ Map the total score of 0–8 to a tier:
 | 5–6 | 3 | Heavy |
 | 7–8 | 4 | Frontier |
 
+## Complex-task execution choice
+
+Treat a next step with a score of 5–8 as complex. Before starting it, present
+exactly two execution options and wait for the user to choose unless they have
+already selected a mode for the current task:
+
+1. **Coordinator-led agents.** Create one dedicated coordinator agent whose only
+   responsibilities are decomposition, delegation, progress tracking, and final
+   synthesis. It must not inspect implementation artifacts, edit files, execute
+   the work, run tests, or perform the worker's validation. The coordinator must
+   delegate inspection, execution, and validation to at least one separate worker
+   agent.
+2. **Direct execution.** Do not create a coordinator. The current agent performs
+   the work directly using the model and effort selected for the complex step.
+
+Before creating any agent in option 1, score that agent's assigned work separately
+with A–D and select its model and effort from this router. Do not automatically
+inherit the coordinator's or parent agent's configuration. Show the user the
+role-specific model check in a compact table before spawning, and apply each
+selection to the spawn configuration when the environment supports it:
+
+```text
+| Role | Responsibility | Model | Effort | Score |
+|---|---|---|---|---|
+| Coordinator | Decompose, delegate, track, synthesize | gpt-5.6-terra | medium | 4 (A1 B2 C0 D1) |
+| Worker 1 | Inspect, implement, and validate | gpt-5.6-sol | high | 6 (A1 B2 C1 D2) |
+```
+
+Add a row for every worker. Check which models and effort levels the agent-spawn
+environment actually supports before presenting the table. If the ideal selection
+is unavailable, use the closest available model in the same tier and the closest
+supported effort that does not weaken an irreversible-action override; label the
+substitution explicitly. If the selected environment cannot create a dedicated
+coordinator plus at least one separate worker, state that constraint and use option
+2 only after the user approves it. Do not present these two options again for later
+complex steps in the same task unless the chosen mode becomes unavailable or the
+user asks to reconsider it.
+
 ## Selection table
 
 | Tier | Anthropic | OpenAI | Google | Open-weight | Effort |
@@ -68,15 +106,30 @@ Apply these after determining the tier. Overrides take precedence over the score
 
 ## Format
 
-Use exactly one table at the end of the step:
+For a non-complex next step, use exactly one table at the end of the step:
 
 ```
 | Next step | Model | Effort | Score | Reason |
 |---|---|---|---|---|
-| Write migration script | Opus 5 | high | 6 (A1 B2 C2 D1) | writes to DB; irreversible |
+| Update API validation | Sonnet 5 | medium | 4 (A1 B1 C1 D1) | scoped code change with known behavior |
 
-Fallback: schema is more complex than expected → Opus 5 / xhigh.
+Fallback: tests expose cross-module behavior → Opus 5 / high.
 ```
+
+For a complex next step, replace that single recommendation with an execution
+choice block. Show exactly two options—coordinator-led agents and direct
+execution—plus the proposed role-specific model-check table for option 1. Include
+the direct model and effort in option 2:
+
+```text
+| Option | Mode | Configuration | Trade-off |
+|---|---|---|---|
+| 1 | Coordinator-led agents | One coordinator plus at least one separate worker; see role checks below | more oversight and delegation overhead |
+| 2 | Direct execution | Current agent: Opus 5 / max; 7 (A2 B2 C2 D1) | less overhead and no independent delegation |
+```
+
+Then show the role-specific table from the complex-task rule and end with
+`Choose option 1 or 2.`
 
 Keep the "Reason" column to approximately 12 words at most—it is a note, not a paragraph. Include the "Fallback" line only when there is a genuine risk; omit it entirely when the next step is straightforward.
 
@@ -96,11 +149,17 @@ Keep the "Reason" column to approximately 12 words at most—it is a note, not a
 **Completed step:** finished the schema for the ingestion pipeline.
 **Next step:** choose a backfill strategy for 400M rows in production.
 
-| Next step | Model | Effort | Score | Reason |
-|---|---|---|---|---|
-| Choose backfill strategy | Opus 5 | xhigh | 7 (A2 B2 C2 D1) | production, irreversible, many constraints |
+| Option | Mode | Configuration | Trade-off |
+|---|---|---|---|
+| 1 | Coordinator-led agents | One coordinator plus one separate worker; see role checks below | independent execution and validation; more overhead |
+| 2 | Direct execution | Current agent: Opus 5 / max; 7 (A2 B2 C2 D1) | less overhead and no independent delegation |
 
-Fallback: if stuck after one attempt → switch providers to gpt-5.6-sol instead of increasing effort.
+| Role | Responsibility | Model | Effort | Score |
+|---|---|---|---|---|
+| Coordinator | Decompose, delegate, track, synthesize | Sonnet 5 | medium | 4 (A1 B2 C0 D1) |
+| Worker 1 | Inspect constraints, design the strategy, and validate rollback | Opus 5 | max | 7 (A2 B2 C2 D1) |
+
+Choose option 1 or 2.
 
 ---
 
