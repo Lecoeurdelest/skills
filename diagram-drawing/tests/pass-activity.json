@@ -1,5 +1,5 @@
 {
- "title": "Activity: xử lý đơn hàng",
+ "title": "Activity: order fulfilment",
  "type": "uml-activity",
  "direction": "TB",
  "view_width": 800,
@@ -8,12 +8,12 @@
   "h": 630
  },
  "requested": [
-  "Nhận đơn",
-  "Đóng gói",
-  "Xuất hóa đơn",
-  "Giao hàng",
-  "Báo hết hàng",
-  "[còn hàng]",
+  "Receive order",
+  "Pack items",
+  "Issue invoice",
+  "Ship order",
+  "Report no stock",
+  "[in stock]",
   "[else]"
  ],
  "nodes": [
@@ -34,7 +34,7 @@
    "w": 160,
    "h": 50,
    "lines": [
-    "Nhận đơn"
+    "Receive order"
    ],
    "bold_first": false
   },
@@ -55,7 +55,7 @@
    "w": 160,
    "h": 50,
    "lines": [
-    "Báo hết hàng"
+    "Report no stock"
    ],
    "bold_first": false
   },
@@ -85,7 +85,7 @@
    "w": 160,
    "h": 50,
    "lines": [
-    "Đóng gói"
+    "Pack items"
    ],
    "bold_first": false
   },
@@ -97,7 +97,7 @@
    "w": 160,
    "h": 50,
    "lines": [
-    "Xuất hóa đơn"
+    "Issue invoice"
    ],
    "bold_first": false
   },
@@ -118,7 +118,7 @@
    "w": 160,
    "h": 50,
    "lines": [
-    "Giao hàng"
+    "Ship order"
    ],
    "bold_first": false
   },
@@ -180,11 +180,11 @@
      310
     ]
    ],
-   "label": "[còn hàng]",
+   "label": "[in stock]",
    "label_box": [
     308,
     272,
-    76,
+    70,
     20
    ]
   },
@@ -334,7 +334,7 @@
    "h": 34,
    "font_size": 20,
    "lines": [
-    "Activity: xử lý đơn hàng"
+    "Activity: order fulfilment"
    ]
   }
  ]

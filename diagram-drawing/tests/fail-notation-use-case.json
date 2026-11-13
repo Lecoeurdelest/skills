@@ -1,5 +1,5 @@
 {
- "title": "Use case: hệ thống đặt hàng",
+ "title": "Use case: ordering system",
  "type": "uml-use-case",
  "view_width": 800,
  "canvas": {
@@ -16,7 +16,7 @@
    "w": 650,
    "h": 320,
    "lines": [
-    "Hệ thống đặt hàng"
+    "Ordering system"
    ]
   },
   {
@@ -28,7 +28,7 @@
    "w": 170,
    "h": 56,
    "lines": [
-    "Tìm sản phẩm"
+    "Search products"
    ],
    "bold_first": false,
    "shape": "rounded"
@@ -42,7 +42,7 @@
    "w": 170,
    "h": 56,
    "lines": [
-    "Đặt hàng"
+    "Place order"
    ],
    "bold_first": false
   },
@@ -55,7 +55,7 @@
    "w": 170,
    "h": 56,
    "lines": [
-    "Thanh toán"
+    "Pay"
    ],
    "bold_first": false
   },
@@ -68,7 +68,7 @@
    "w": 170,
    "h": 56,
    "lines": [
-    "Áp mã giảm giá"
+    "Apply coupon"
    ],
    "bold_first": false
   },
@@ -80,7 +80,7 @@
    "w": 110,
    "h": 90,
    "lines": [
-    "Khách hàng"
+    "Customer"
    ],
    "bold_first": false
   },
@@ -92,8 +92,8 @@
    "w": 100,
    "h": 90,
    "lines": [
-    "Cổng",
-    "thanh toán"
+    "Payment",
+    "gateway"
    ],
    "bold_first": false
   }
@@ -225,7 +225,7 @@
    "h": 34,
    "font_size": 20,
    "lines": [
-    "Use case: hệ thống đặt hàng"
+    "Use case: ordering system"
    ]
   }
  ]

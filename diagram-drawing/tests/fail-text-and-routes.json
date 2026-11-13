@@ -17,8 +17,8 @@
    "w": 120,
    "h": 50,
    "lines": [
-    "Phát hiện vấn đề, lãng phí",
-    "Tìm lần chạy bất thường vượt p95"
+    "Detect problems and waste",
+    "Find abnormal runs above the p95"
    ],
    "fill": "#EEF4FF",
    "text_color": "#C8D4F0"
@@ -31,7 +31,7 @@
    "w": 140,
    "h": 60,
    "lines": [
-    "Phân tích"
+    "Analyst"
    ],
    "fill": "#FFF6E0"
   },
@@ -56,7 +56,7 @@
    "w": 140,
    "h": 60,
    "lines": [
-    "Đạt?"
+    "Passed?"
    ]
   },
   {
@@ -66,7 +66,7 @@
    "w": 140,
    "h": 60,
    "lines": [
-    "Mồ côi"
+    "Orphan"
    ],
    "kind": "process"
   }
@@ -86,7 +86,7 @@
      105
     ]
    ],
-   "label": "một nhãn rất dài nằm trên mũi tên",
+   "label": "a very long label placed on the arrow",
    "kind": "flow"
   },
   {
@@ -170,7 +170,7 @@
    "w": 200,
    "h": 24,
    "lines": [
-    "Ghi chú nằm trên đường đi"
+    "A note that sits on the route"
    ]
   }
  ]

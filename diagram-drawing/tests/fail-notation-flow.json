@@ -1,5 +1,5 @@
 {
- "title": "Vòng cải tiến PDCA",
+ "title": "PDCA improvement loop",
  "type": "flow",
  "direction": "TB",
  "view_width": 800,
@@ -16,7 +16,7 @@
    "w": 120,
    "h": 44,
    "lines": [
-    "Bắt đầu"
+    "Start"
    ],
    "fill": "#E7F6EC",
    "text_color": "#1B1F24"
@@ -29,8 +29,8 @@
    "w": 180,
    "h": 60,
    "lines": [
-    "Lập kế hoạch",
-    "Đặt mục tiêu"
+    "Plan",
+    "Set the target"
    ],
    "fill": "#EEF4FF",
    "text_color": "#1B1F24"
@@ -43,8 +43,8 @@
    "w": 180,
    "h": 60,
    "lines": [
-    "Thực hiện",
-    "Thử quy mô nhỏ"
+    "Do",
+    "Try at small scale"
    ],
    "fill": "#EEF4FF",
    "text_color": "#1B1F24"
@@ -57,8 +57,8 @@
    "w": 180,
    "h": 60,
    "lines": [
-    "Kiểm tra",
-    "So với mục tiêu"
+    "Check",
+    "Compare to target"
    ],
    "fill": "#EEF4FF",
    "text_color": "#1B1F24",
@@ -83,8 +83,8 @@
    "w": 180,
    "h": 60,
    "lines": [
-    "Hành động",
-    "Chuẩn hóa"
+    "Act",
+    "Standardize"
    ],
    "fill": "#EEF4FF",
    "text_color": "#1B1F24"
@@ -97,7 +97,7 @@
    "w": 120,
    "h": 44,
    "lines": [
-    "Kết thúc"
+    "End"
    ],
    "fill": "#E7F6EC",
    "text_color": "#1B1F24"
@@ -209,11 +209,11 @@
      184
     ]
    ],
-   "label": "Chưa đạt",
+   "label": "No",
    "label_box": [
     448,
     330,
-    64,
+    30,
     20
    ]
   },
@@ -244,7 +244,7 @@
    "h": 34,
    "font_size": 20,
    "lines": [
-    "Vòng cải tiến PDCA"
+    "PDCA improvement loop"
    ]
   },
   {
@@ -256,9 +256,9 @@
    "h": 64,
    "font_size": 12,
    "lines": [
-    "Xanh lá: bắt đầu, kết thúc",
-    "Xanh dương: bước xử lý",
-    "Vàng: điểm quyết định"
+    "Green: start and end",
+    "Blue: process step",
+    "Yellow: decision"
    ]
   }
  ]

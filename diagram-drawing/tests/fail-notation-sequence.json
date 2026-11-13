@@ -1,5 +1,5 @@
 {
- "title": "Sequence: giao tiếp giữa các agent trong vòng PDCA",
+ "title": "Sequence: how the agents communicate in the PDCA loop",
  "type": "uml-sequence",
  "view_width": 800,
  "view_height": 800,
@@ -16,7 +16,7 @@
    "w": 92,
    "h": 36,
    "lines": [
-    "Điều phối"
+    "Coordinator"
    ],
    "font_size": 12,
    "bold_first": false,
@@ -33,7 +33,7 @@
    "w": 92,
    "h": 36,
    "lines": [
-    "Quan sát"
+    "Observer"
    ],
    "font_size": 12,
    "bold_first": false,
@@ -49,7 +49,7 @@
    "w": 92,
    "h": 36,
    "lines": [
-    "Phân tích"
+    "Analyst"
    ],
    "font_size": 12,
    "bold_first": false,
@@ -65,7 +65,7 @@
    "w": 92,
    "h": 36,
    "lines": [
-    "Đề xuất"
+    "Proposer"
    ],
    "font_size": 12,
    "bold_first": false,
@@ -81,7 +81,7 @@
    "w": 92,
    "h": 36,
    "lines": [
-    "Kiểm tra"
+    "Verifier"
    ],
    "font_size": 12,
    "bold_first": false,
@@ -97,7 +97,7 @@
    "w": 92,
    "h": 36,
    "lines": [
-    "Chuẩn hóa"
+    "SOP writer"
    ],
    "font_size": 12,
    "bold_first": false,
@@ -113,7 +113,7 @@
    "w": 92,
    "h": 50,
    "lines": [
-    "Người duyệt"
+    "Approver"
    ],
    "font_size": 12,
    "bold_first": false
@@ -245,7 +245,7 @@
    ],
    "kind": "sync",
    "label": [
-    "Lệnh chạy",
+    "run request",
     "+ baseline KPI"
    ],
    "label_mask": true,
@@ -309,13 +309,13 @@
    ],
    "kind": "sync",
    "label": [
-    "kiểm tra schema, ghi log"
+    "validate schema, write log"
    ],
    "label_mask": true,
    "label_box": [
     110.0,
     196.2,
-    155.2,
+    164.8,
     19.6
    ]
   },
@@ -390,13 +390,13 @@
    ],
    "kind": "sync",
    "label": [
-    "root_cause + SOP hiện hành"
+    "root_cause + current SOP"
    ],
    "label_mask": true,
    "label_box": [
-    144.5,
+    152.8,
     281.4,
-    177.0,
+    160.4,
     19.6
    ]
   },
@@ -452,13 +452,13 @@
    ],
    "kind": "sync",
    "label": [
-    "chạy replay cấu hình cũ và mới"
+    "replay old and new config"
    ],
    "label_mask": true,
    "label_box": [
     110.0,
     348.2,
-    193.8,
+    161.2,
     19.6
    ]
   },
@@ -479,13 +479,13 @@
    ],
    "kind": "sync",
    "label": [
-    "change_proposal + kết quả replay"
+    "change_proposal + replay result"
    ],
    "label_mask": true,
    "label_box": [
-    182.6,
+    188.3,
     373.4,
-    212.2,
+    200.7,
     19.6
    ]
   },
@@ -533,13 +533,13 @@
    ],
    "kind": "sync",
    "label": [
-    "verdict + yêu cầu phân tích lại"
+    "verdict + re-analysis request"
    ],
    "label_mask": true,
    "label_box": [
-    82.1,
+    87.5,
     471.4,
-    190.5,
+    179.6,
     19.6
    ]
   },
@@ -560,13 +560,13 @@
    ],
    "kind": "reply",
    "label": [
-    "root_cause mới"
+    "new root_cause"
    ],
    "label_mask": true,
    "label_box": [
-    128.6,
+    127.4,
     501.4,
-    97.4,
+    99.9,
     19.6
    ]
   },
@@ -614,13 +614,13 @@
    ],
    "kind": "reply",
    "label": [
-    "SOP mới"
+    "new SOP"
    ],
    "label_mask": true,
    "label_box": [
-    316.1,
+    314.8,
     599.4,
-    56.5,
+    58.9,
     19.6
    ]
   },
@@ -641,13 +641,13 @@
    ],
    "kind": "sync",
    "label": [
-    "yêu cầu duyệt SOP mới"
+    "approval request for new SOP"
    ],
    "label_mask": true,
    "label_box": [
-    327.0,
+    307.5,
     629.4,
-    146.0,
+    184.9,
     19.6
    ]
   },
@@ -668,13 +668,13 @@
    ],
    "kind": "reply",
    "label": [
-    "đồng ý"
+    "approved"
    ],
    "label_mask": true,
    "label_box": [
-    376.4,
+    368.6,
     659.4,
-    47.1,
+    62.8,
     19.6
    ]
   },
@@ -703,13 +703,13 @@
    ],
    "kind": "sync",
    "label": [
-    "áp dụng SOP mới"
+    "apply new SOP"
    ],
    "label_mask": true,
    "label_box": [
     110.0,
     696.2,
-    109.6,
+    95.8,
     19.6
    ]
   }
@@ -736,7 +736,7 @@
    "h": 20,
    "font_size": 12,
    "lines": [
-    "[chưa đạt]"
+    "[failed]"
    ]
   },
   {
@@ -748,7 +748,7 @@
    "h": 20,
    "font_size": 12,
    "lines": [
-    "đạt"
+    "passed"
    ]
   },
   {
@@ -760,7 +760,7 @@
    "h": 30,
    "font_size": 16,
    "lines": [
-    "Sequence: giao tiếp giữa các agent trong vòng PDCA"
+    "Sequence: how the agents communicate in the PDCA loop"
    ]
   }
  ],

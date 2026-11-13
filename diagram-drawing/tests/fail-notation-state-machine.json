@@ -1,5 +1,5 @@
 {
- "title": "State machine: vòng đời của một change_proposal",
+ "title": "State machine: lifecycle of a change_proposal",
  "type": "uml-state-machine",
  "direction": "TB",
  "view_width": 800,
@@ -26,7 +26,7 @@
    "w": 140,
    "h": 50,
    "lines": [
-    "Đã đề xuất"
+    "Proposed"
    ],
    "bold_first": false,
    "fill": "#F2F4F7",
@@ -40,9 +40,9 @@
    "w": 240,
    "h": 74,
    "lines": [
-    "Đang replay",
+    "Replaying",
     "---",
-    "do / so cấu hình cũ và mới"
+    "do / compare configs"
    ],
    "bold_first": false,
    "fill": "#F2F4F7",
@@ -56,7 +56,7 @@
    "w": 120,
    "h": 60,
    "lines": [
-    "verdict đạt?"
+    "verdict passed?"
    ],
    "bold_first": false,
    "fill": "#F2F4F7",
@@ -70,7 +70,7 @@
    "w": 120,
    "h": 50,
    "lines": [
-    "Cần sửa"
+    "Rework"
    ],
    "bold_first": false,
    "fill": "#F2F4F7",
@@ -84,7 +84,7 @@
    "w": 140,
    "h": 50,
    "lines": [
-    "Chờ duyệt"
+    "In review"
    ],
    "bold_first": false,
    "fill": "#F2F4F7",
@@ -99,7 +99,7 @@
    "w": 120,
    "h": 50,
    "lines": [
-    "Bị từ chối"
+    "Rejected"
    ],
    "bold_first": false,
    "fill": "#F2F4F7",
@@ -113,7 +113,7 @@
    "w": 140,
    "h": 50,
    "lines": [
-    "Đã áp dụng"
+    "Applied"
    ],
    "bold_first": false,
    "fill": "#F2F4F7",
@@ -155,11 +155,11 @@
      130
     ]
    ],
-   "label": "tạo [hợp lệ]",
+   "label": "create [valid]",
    "label_box": [
     328,
     100,
-    84,
+    90,
     20
    ]
   },
@@ -178,11 +178,11 @@
      230
     ]
    ],
-   "label": "bắt đầu replay",
+   "label": "start replay",
    "label_box": [
     328,
     195,
-    96,
+    80,
     20
    ],
    "label_mask": true
@@ -202,7 +202,7 @@
      354
     ]
    ],
-   "label": "replay xong",
+   "label": "replay done",
    "label_box": [
     328,
     319,
@@ -226,11 +226,11 @@
      464
     ]
    ],
-   "label": "[có]",
+   "label": "[yes]",
    "label_box": [
     328,
     429,
-    52,
+    72,
     20
    ],
    "label_mask": true
@@ -250,7 +250,7 @@
      384
     ]
    ],
-   "label": "[không]",
+   "label": "[no]",
    "label_box": [
     404,
     360,
@@ -279,11 +279,11 @@
     ]
    ],
    "back": true,
-   "label": "đề xuất lại",
+   "label": "resubmit",
    "label_box": [
     538,
     247,
-    72,
+    64,
     20
    ],
    "label_mask": true
@@ -303,11 +303,11 @@
      584
     ]
    ],
-   "label": "đồng ý / ghi SOP mới",
+   "label": "approve / write new SOP",
    "label_box": [
     328,
     539,
-    140,
+    160,
     20
    ],
    "label_mask": true,
@@ -328,11 +328,11 @@
      489
     ]
    ],
-   "label": "từ chối",
+   "label": "reject",
    "label_box": [
-    186,
+    188,
     465,
-    48,
+    44,
     20
    ],
    "label_mask": true
@@ -389,7 +389,7 @@
    "h": 30,
    "font_size": 16,
    "lines": [
-    "State machine: vòng đời của một change_proposal"
+    "State machine: lifecycle of a change_proposal"
    ]
   }
  ]

@@ -1,5 +1,5 @@
 {
- "title": "Cách các agent PDCA giao tiếp",
+ "title": "How the PDCA agents communicate",
  "type": "uml-sequence",
  "view_width": 800,
  "view_height": 800,
@@ -8,23 +8,23 @@
   "h": 660
  },
  "requested": [
-  "Điều phối",
-  "Quan sát",
-  "Phân tích",
-  "Đề xuất",
-  "Kiểm tra",
-  "Chuẩn hóa",
+  "Coordinator",
+  "Observer",
+  "Analyst",
+  "Proposer",
+  "Verifier",
+  "SOP writer",
   "baseline KPI",
   "anomaly_report",
   "root_cause",
-  "SOP hiện hành",
+  "Current SOP",
   "change_proposal",
   "replay",
   "verdict",
-  "Chưa đạt",
-  "[Đạt]",
-  "Yêu cầu duyệt",
-  "người duyệt",
+  "Failed",
+  "[Passed]",
+  "Approval request",
+  "approval",
   "schema",
   "alt"
  ],
@@ -37,7 +37,7 @@
    "w": 100,
    "h": 46,
    "lines": [
-    "Điều phối",
+    "Coordinator",
     "(code)"
    ],
    "bold_first": false,
@@ -54,7 +54,7 @@
    "w": 100,
    "h": 46,
    "lines": [
-    "Quan sát"
+    "Observer"
    ],
    "bold_first": false,
    "text_color": "#1B1F24",
@@ -69,7 +69,7 @@
    "w": 100,
    "h": 46,
    "lines": [
-    "Phân tích"
+    "Analyst"
    ],
    "bold_first": false,
    "text_color": "#1B1F24",
@@ -84,7 +84,7 @@
    "w": 100,
    "h": 46,
    "lines": [
-    "Đề xuất"
+    "Proposer"
    ],
    "bold_first": false,
    "text_color": "#1B1F24",
@@ -99,7 +99,7 @@
    "w": 100,
    "h": 46,
    "lines": [
-    "Kiểm tra"
+    "Verifier"
    ],
    "bold_first": false,
    "text_color": "#1B1F24",
@@ -114,7 +114,7 @@
    "w": 100,
    "h": 46,
    "lines": [
-    "Chuẩn hóa"
+    "SOP writer"
    ],
    "bold_first": false,
    "text_color": "#1B1F24",
@@ -129,7 +129,7 @@
    "w": 110,
    "h": 30,
    "lines": [
-    "Kiểm tra schema và ghi log"
+    "Validate schema and write log"
    ],
    "standalone": true,
    "on_guide": true,
@@ -146,7 +146,7 @@
    "w": 110,
    "h": 30,
    "lines": [
-    "Chạy replay cấu hình cũ và mới"
+    "Replay old and new config"
    ],
    "standalone": true,
    "on_guide": true,
@@ -163,7 +163,7 @@
    "w": 110,
    "h": 30,
    "lines": [
-    "Chờ người duyệt rồi áp dụng"
+    "Wait for approval, then apply"
    ],
    "standalone": true,
    "on_guide": true,
@@ -200,7 +200,7 @@
      142
     ]
    ],
-   "label": "Lệnh chạy + baseline KPI",
+   "label": "run request + baseline KPI",
    "kind": "sync"
   },
   {
@@ -272,7 +272,7 @@
      300
     ]
    ],
-   "label": "root_cause + SOP hiện hành",
+   "label": "root_cause + current SOP",
    "kind": "sync"
   },
   {
@@ -308,7 +308,7 @@
      398
     ]
    ],
-   "label": "change_proposal + kết quả replay",
+   "label": "change_proposal + replay result",
    "kind": "sync"
   },
   {
@@ -344,7 +344,7 @@
      490
     ]
    ],
-   "label": "verdict + yêu cầu phân tích lại",
+   "label": "verdict + re-analysis request",
    "kind": "sync"
   },
   {
@@ -380,7 +380,7 @@
      584
     ]
    ],
-   "label": "Yêu cầu duyệt + SOP mới",
+   "label": "Approval request + new SOP",
    "kind": "reply"
   }
  ],
@@ -406,7 +406,7 @@
    "h": 20,
    "font_size": 12,
    "lines": [
-    "[Chưa đạt]"
+    "[Failed]"
    ]
   },
   {
@@ -418,7 +418,7 @@
    "h": 20,
    "font_size": 12,
    "lines": [
-    "[Đạt]"
+    "[Passed]"
    ]
   },
   {
@@ -430,7 +430,7 @@
    "h": 34,
    "font_size": 18,
    "lines": [
-    "Cách các agent PDCA giao tiếp"
+    "How the PDCA agents communicate"
    ]
   },
   {
@@ -442,8 +442,8 @@
    "h": 40,
    "font_size": 12,
    "lines": [
-    "Nét liền: gửi đi · Nét đứt: trả về",
-    "Ô vàng: việc bộ điều phối tự làm"
+    "Solid: sent · Dashed: returned",
+    "Yellow box: work the coordinator does itself"
    ]
   }
  ],
