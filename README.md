@@ -6,7 +6,7 @@ A collection of Claude skills.
 
 | Skill | Description |
 |---|---|
-| [diagram-drawing](./diagram-drawing/) | Layout rules and a lint gate for diagrams in any tool or language; measures text and checks arrow routes before drawing |
+| [diagram-drawing](./diagram-drawing/) | Notation criteria per diagram type (the 14 UML types and the flowchart) and a lint gate for any tool or language; checks symbols, text fit and arrow routes before drawing |
 | [model-router](./model-router/) | Routes each step to a model and effort level; complex steps also offer coordinator-led or direct execution with per-agent model checks |
 | [skill-limit-recovery](./skill-limit-recovery/) | Handles limit-related situations: context window, session limit, weekly quota, provider overload, and unsafe interruption |
 
