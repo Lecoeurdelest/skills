@@ -19,12 +19,8 @@ diagram-drawing/
 │       ├── README.md            index, file format, how to add criteria or a type
 │       ├── uml-<type>.md        one self-contained file per UML diagram type (14 files)
 │       └── flow.md              flowchart
-├── scripts/
-│   └── diagram_lint.py
-└── tests/
-    ├── pass-*.json              flow, sequence, use case, activity, state machine
-    ├── fail-notation-*.json     the same five with planted notation defects
-    └── fail-*.json              planted geometry and structure defects
+└── scripts/
+    └── diagram_lint.py
 ```
 
 Each type file holds its criteria (id, wording, basis, who checks it) and a
@@ -42,26 +38,16 @@ conservative estimates.
 ```bash
 python3 scripts/diagram_lint.py --types                              # the 15 diagram types
 python3 scripts/diagram_lint.py --check-types                        # validate every type file
-python3 scripts/diagram_lint.py tests/pass-sequence.json             # PASS, exit 0
-python3 scripts/diagram_lint.py tests/pass-sequence.json --styles    # what to draw for each kind
-python3 scripts/diagram_lint.py tests/fail-notation-sequence.json    # FAIL, cites SEQ-xx criteria
-python3 scripts/diagram_lint.py tests/fail-text-and-routes.json      # FAIL, geometry
-for f in tests/*.json; do python3 scripts/diagram_lint.py "$f" | tail -1; done
+python3 scripts/diagram_lint.py spec.json                            # lint a layout spec
+python3 scripts/diagram_lint.py spec.json --styles                   # what to draw for each kind
 ```
-
-Every `pass-*` spec must pass and every `fail-*` spec must fail. The
-`fail-notation-*` specs each break several criteria of their type (a reply
-drawn solid, a fork drawn as a diamond, an actor inside the subject, a decision
-exit without a label) and exist to show that each rule fires with its id.
 
 ## Status
 
 - Criteria were checked against the reference pages listed under "Sources" in
   each type file. Items that could not be confirmed there are named in the same
   section.
-- The script has been exercised on the thirteen specs in `tests/`. Five of the 15
-  types have test specs so far: flowchart, sequence, use case, activity and
-  state machine.
+- The repository has no test specs. `--check-types` validates the type files only; the lint rules have not been run against a spec for every type.
 - The emit rules for individual drawing tools in `SKILL.md` and
   `references/shapes.md` have not been validated against rendered output for
   every shape.

@@ -76,7 +76,6 @@ Structural checks, each with `rule` and usually `kinds`:
 2. Add a row to the criteria table with the next free id. Never renumber: lint messages and earlier reviews cite these ids.
 3. If the script can check it, express it in the rules block and set Check to `script`. If the vocabulary above cannot express it, set Check to `you`; add a new check to `scripts/diagram_lint.py` only when several types need it.
 4. Run `python3 scripts/diagram_lint.py --check-types`. It fails when the block does not parse, uses an unknown word or kind, cites an id that has no row, or when a row marked `script` has no rule.
-5. Add or extend a spec in `tests/`: one that passes, and one that breaks the new rule and is reported with its id.
 
 The same symbol can mean different things in different types, so state it in each type that has it. The diamond is the usual trap: a flowchart decision holds its question (FLOW-09), a UML activity decision is empty (ACT-05), and a UML choice is empty or holds only the left operand its guards share (STM-05, STM-14).
 
@@ -86,4 +85,4 @@ The same symbol can mean different things in different types, so state it in eac
 2. Pick a new id prefix and rewrite the header, criteria, layout and sources.
 3. List every element under `nodes` and every relationship under `edges`. If the type needs a symbol that `../shapes.md` lacks, add it there and to `SHAPES` in the script.
 4. Add the type to the index above and to the table in `SKILL.md`.
-5. Follow steps 4 and 5 of the previous list.
+5. Follow step 4 of the previous list.
