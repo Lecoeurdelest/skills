@@ -1,0 +1,24 @@
+{
+  "title": "Vòng PDCA",
+  "type": "flow",
+  "direction": "LR",
+  "view_width": 800,
+  "canvas": {"w": 800, "h": 330},
+  "requested": ["Lập kế hoạch", "Thực hiện", "Kiểm tra", "Hành động"],
+  "nodes": [
+    {"id": "p", "kind": "step", "start": true, "x": 40,  "y": 80, "w": 150, "h": 70, "lines": ["Lập kế hoạch", "Đặt mục tiêu"], "fill": "#EEF4FF", "text_color": "#1B1F24"},
+    {"id": "d", "kind": "step", "x": 230, "y": 80, "w": 150, "h": 70, "lines": ["Thực hiện", "Thử quy mô nhỏ"], "fill": "#EEF4FF", "text_color": "#1B1F24"},
+    {"id": "c", "kind": "step", "x": 420, "y": 80, "w": 150, "h": 70, "lines": ["Kiểm tra", "So với mục tiêu"], "fill": "#EEF4FF", "text_color": "#1B1F24"},
+    {"id": "a", "kind": "step", "x": 610, "y": 80, "w": 150, "h": 70, "lines": ["Hành động", "Chuẩn hóa"], "fill": "#E7F6EC", "text_color": "#1B1F24"}
+  ],
+  "edges": [
+    {"id": "e1", "from": "p", "to": "d", "points": [[190, 115], [230, 115]]},
+    {"id": "e2", "from": "d", "to": "c", "points": [[380, 115], [420, 115]]},
+    {"id": "e3", "from": "c", "to": "a", "points": [[570, 115], [610, 115]]},
+    {"id": "e4", "from": "a", "to": "p", "back": true, "points": [[685, 150], [685, 200], [115, 200], [115, 150]]}
+  ],
+  "texts": [
+    {"id": "t", "role": "title", "x": 40, "y": 24, "w": 400, "h": 34, "font_size": 20, "lines": ["Vòng PDCA"]},
+    {"id": "lg", "role": "legend", "x": 40, "y": 250, "w": 520, "h": 30, "lines": ["Xanh dương: các bước · Xanh lá: bước chuẩn hóa"]}
+  ]
+}
