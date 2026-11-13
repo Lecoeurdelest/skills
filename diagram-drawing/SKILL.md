@@ -1,6 +1,6 @@
 ---
 name: diagram-drawing
-description: Use before drawing or editing any diagram (sơ đồ, lưu đồ) in any tool or language - a flowchart or one of the 14 UML diagram types (class, object, package, component, composite structure, deployment, profile, use case, activity, state machine, sequence, communication, timing, interaction overview). Gives per-type notation criteria, layout rules and a lint gate that stops wrong symbols, clipped text and messy arrows.
+description: Use before drawing or editing any diagram in any tool or language - a flowchart or one of the 14 UML diagram types (class, object, package, component, composite structure, deployment, profile, use case, activity, state machine, sequence, communication, timing, interaction overview). Gives per-type notation criteria, layout rules and a lint gate that stops wrong symbols, clipped text and messy arrows.
 ---
 
 # Diagram drawing

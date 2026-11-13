@@ -43,8 +43,8 @@
    "w": 140,
    "h": 60,
    "lines": [
-    "データベース",
-    "接続"
+    "Database",
+    "Connection"
    ],
    "fill": "#E7F6EC"
   },
