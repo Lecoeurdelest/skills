@@ -1,23 +1,35 @@
 # Diagram Drawing Skill
 
-Layout rules and a lint gate for box-and-arrow diagrams, for any drawing tool
-and any label language. The agent describes the diagram as a layout spec
-(JSON), measures it with `scripts/diagram_lint.py`, fixes every failure, and
-only then hands the geometry to the drawing tool.
+Notation criteria and a lint gate for 15 diagram types (the 14 UML 2.5 diagram
+types and the flowchart), for any drawing tool and any label language. The
+agent describes the diagram as a layout spec (JSON), checks it with
+`scripts/diagram_lint.py` against the criteria of its diagram type and against
+the geometry rules, fixes every failure, and only then hands it to the drawing
+tool.
 
 ## Structure
 
 ```text
 diagram-drawing/
-├── SKILL.md
+├── SKILL.md                     workflow, spec format, generic checks, emit rules
 ├── README.md
+├── references/
+│   ├── shapes.md                shape, line and arrowhead vocabulary
+│   └── types/
+│       ├── README.md            index, file format, how to add criteria or a type
+│       ├── uml-<type>.md        one self-contained file per UML diagram type (14 files)
+│       └── flow.md              flowchart
 ├── scripts/
 │   └── diagram_lint.py
 └── tests/
-    ├── pass-pdca.json
-    ├── fail-text-and-routes.json
-    └── fail-structure.json
+    ├── pass-*.json              flow, sequence, use case, activity, state machine
+    ├── fail-notation-*.json     the same five with planted notation defects
+    └── fail-*.json              planted geometry and structure defects
 ```
+
+Each type file holds its criteria (id, wording, basis, who checks it) and a
+JSON block with the rules the script enforces. The script reads that block, so
+the criteria a person reads and the rules the script runs are one file.
 
 ## Requirements
 
@@ -25,22 +37,31 @@ Python 3.8+. Pillow is optional but recommended (`pip install pillow`): with it
 text is measured using local fonts, without it the script falls back to
 conservative estimates.
 
-## Try the lint
+## Try it
 
 ```bash
-python3 scripts/diagram_lint.py tests/pass-pdca.json              # PASS, exit 0
-python3 scripts/diagram_lint.py tests/fail-text-and-routes.json   # FAIL, exit 1
-python3 scripts/diagram_lint.py tests/fail-structure.json         # FAIL, exit 1
-python3 scripts/diagram_lint.py tests/pass-pdca.json --sizes      # minimum box sizes
+python3 scripts/diagram_lint.py --types                              # the 15 diagram types
+python3 scripts/diagram_lint.py --check-types                        # validate every type file
+python3 scripts/diagram_lint.py tests/pass-sequence.json             # PASS, exit 0
+python3 scripts/diagram_lint.py tests/pass-sequence.json --styles    # what to draw for each kind
+python3 scripts/diagram_lint.py tests/fail-notation-sequence.json    # FAIL, cites SEQ-xx criteria
+python3 scripts/diagram_lint.py tests/fail-text-and-routes.json      # FAIL, geometry
+for f in tests/*.json; do python3 scripts/diagram_lint.py "$f" | tail -1; done
 ```
 
-The two `fail-*` specs carry planted defects (clipped text, arrows through
-boxes and over text, overlapping arrows, missing legend, low contrast,
-unanchored routes, too many arrows on one box) and exist to show that each
-check fires.
+Every `pass-*` spec must pass and every `fail-*` spec must fail. The
+`fail-notation-*` specs each break several criteria of their type (a reply
+drawn solid, a fork drawn as a diamond, an actor inside the subject, a decision
+exit without a label) and exist to show that each rule fires with its id.
 
 ## Status
 
-The lint has been exercised on the three specs in `tests/`. The emit rules for
-individual drawing tools in `SKILL.md` have not yet been validated against
-rendered output.
+- Criteria were checked against the reference pages listed under "Sources" in
+  each type file. Items that could not be confirmed there are named in the same
+  section.
+- The script has been exercised on the thirteen specs in `tests/`. Five of the 15
+  types have test specs so far: flowchart, sequence, use case, activity and
+  state machine.
+- The emit rules for individual drawing tools in `SKILL.md` and
+  `references/shapes.md` have not been validated against rendered output for
+  every shape.

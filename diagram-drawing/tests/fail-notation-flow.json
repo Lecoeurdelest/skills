@@ -1,0 +1,265 @@
+{
+ "title": "Vòng cải tiến PDCA",
+ "type": "flow",
+ "direction": "TB",
+ "view_width": 800,
+ "canvas": {
+  "w": 800,
+  "h": 750
+ },
+ "nodes": [
+  {
+   "id": "start",
+   "kind": "terminator",
+   "x": 190,
+   "y": 70,
+   "w": 120,
+   "h": 44,
+   "lines": [
+    "Bắt đầu"
+   ],
+   "fill": "#E7F6EC",
+   "text_color": "#1B1F24"
+  },
+  {
+   "id": "plan",
+   "kind": "process",
+   "x": 160,
+   "y": 154,
+   "w": 180,
+   "h": 60,
+   "lines": [
+    "Lập kế hoạch",
+    "Đặt mục tiêu"
+   ],
+   "fill": "#EEF4FF",
+   "text_color": "#1B1F24"
+  },
+  {
+   "id": "do",
+   "kind": "step",
+   "x": 160,
+   "y": 254,
+   "w": 180,
+   "h": 60,
+   "lines": [
+    "Thực hiện",
+    "Thử quy mô nhỏ"
+   ],
+   "fill": "#EEF4FF",
+   "text_color": "#1B1F24"
+  },
+  {
+   "id": "check",
+   "kind": "process",
+   "x": 160,
+   "y": 354,
+   "w": 180,
+   "h": 60,
+   "lines": [
+    "Kiểm tra",
+    "So với mục tiêu"
+   ],
+   "fill": "#EEF4FF",
+   "text_color": "#1B1F24",
+   "shape": "diamond"
+  },
+  {
+   "id": "ok",
+   "kind": "decision",
+   "x": 135,
+   "y": 454,
+   "w": 230,
+   "h": 90,
+   "lines": [],
+   "fill": "#FFF6E0",
+   "text_color": "#1B1F24"
+  },
+  {
+   "id": "act",
+   "kind": "process",
+   "x": 160,
+   "y": 584,
+   "w": 180,
+   "h": 60,
+   "lines": [
+    "Hành động",
+    "Chuẩn hóa"
+   ],
+   "fill": "#EEF4FF",
+   "text_color": "#1B1F24"
+  },
+  {
+   "id": "end",
+   "kind": "data",
+   "x": 190,
+   "y": 684,
+   "w": 120,
+   "h": 44,
+   "lines": [
+    "Kết thúc"
+   ],
+   "fill": "#E7F6EC",
+   "text_color": "#1B1F24"
+  }
+ ],
+ "edges": [
+  {
+   "id": "f1",
+   "kind": "flow",
+   "from": "start",
+   "to": "plan",
+   "points": [
+    [
+     250,
+     114
+    ],
+    [
+     250,
+     154
+    ]
+   ],
+   "head": "none"
+  },
+  {
+   "id": "f2",
+   "from": "plan",
+   "to": "do",
+   "points": [
+    [
+     250,
+     214
+    ],
+    [
+     250,
+     254
+    ]
+   ]
+  },
+  {
+   "id": "f3",
+   "kind": "flow",
+   "from": "do",
+   "to": "check",
+   "points": [
+    [
+     250,
+     314
+    ],
+    [
+     250,
+     354
+    ]
+   ],
+   "line": "dashed"
+  },
+  {
+   "id": "f4",
+   "kind": "flow",
+   "from": "check",
+   "to": "ok",
+   "points": [
+    [
+     250,
+     414
+    ],
+    [
+     250,
+     454
+    ]
+   ]
+  },
+  {
+   "id": "f5",
+   "kind": "flow",
+   "from": "ok",
+   "to": "act",
+   "points": [
+    [
+     250,
+     544
+    ],
+    [
+     250,
+     584
+    ]
+   ]
+  },
+  {
+   "id": "f6",
+   "kind": "flow",
+   "from": "ok",
+   "to": "plan",
+   "back": true,
+   "points": [
+    [
+     365,
+     499
+    ],
+    [
+     440,
+     499
+    ],
+    [
+     440,
+     184
+    ],
+    [
+     340,
+     184
+    ]
+   ],
+   "label": "Chưa đạt",
+   "label_box": [
+    448,
+    330,
+    64,
+    20
+   ]
+  },
+  {
+   "id": "f7",
+   "kind": "flow",
+   "from": "act",
+   "to": "end",
+   "points": [
+    [
+     250,
+     644
+    ],
+    [
+     250,
+     684
+    ]
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "id": "t",
+   "role": "title",
+   "x": 20,
+   "y": 20,
+   "w": 400,
+   "h": 34,
+   "font_size": 20,
+   "lines": [
+    "Vòng cải tiến PDCA"
+   ]
+  },
+  {
+   "id": "lg",
+   "role": "legend",
+   "x": 540,
+   "y": 70,
+   "w": 240,
+   "h": 64,
+   "font_size": 12,
+   "lines": [
+    "Xanh lá: bắt đầu, kết thúc",
+    "Xanh dương: bước xử lý",
+    "Vàng: điểm quyết định"
+   ]
+  }
+ ]
+}

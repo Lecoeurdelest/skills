@@ -1,0 +1,866 @@
+{
+ "title": "Sequence: giao tiếp giữa các agent trong vòng PDCA",
+ "type": "uml-sequence",
+ "view_width": 800,
+ "view_height": 800,
+ "canvas": {
+  "w": 800,
+  "h": 755
+ },
+ "nodes": [
+  {
+   "id": "o",
+   "kind": "lifeline",
+   "x": 20.0,
+   "y": 72,
+   "w": 92,
+   "h": 36,
+   "lines": [
+    "Điều phối"
+   ],
+   "font_size": 12,
+   "bold_first": false,
+   "hub": true,
+   "fill": "#F2F4F7",
+   "stroke": "#5A626E",
+   "text_color": "#1B1F24"
+  },
+  {
+   "id": "a1",
+   "kind": "lifeline",
+   "x": 131.3,
+   "y": 72,
+   "w": 92,
+   "h": 36,
+   "lines": [
+    "Quan sát"
+   ],
+   "font_size": 12,
+   "bold_first": false,
+   "fill": "#F2F4F7",
+   "stroke": "#5A626E",
+   "text_color": "#1B1F24"
+  },
+  {
+   "id": "a2",
+   "kind": "lifeline",
+   "x": 242.7,
+   "y": 72,
+   "w": 92,
+   "h": 36,
+   "lines": [
+    "Phân tích"
+   ],
+   "font_size": 12,
+   "bold_first": false,
+   "fill": "#F2F4F7",
+   "stroke": "#5A626E",
+   "text_color": "#1B1F24"
+  },
+  {
+   "id": "a3",
+   "kind": "lifeline",
+   "x": 354.0,
+   "y": 72,
+   "w": 92,
+   "h": 36,
+   "lines": [
+    "Đề xuất"
+   ],
+   "font_size": 12,
+   "bold_first": false,
+   "fill": "#F2F4F7",
+   "stroke": "#5A626E",
+   "text_color": "#1B1F24"
+  },
+  {
+   "id": "a4",
+   "kind": "lifeline",
+   "x": 465.3,
+   "y": 72,
+   "w": 92,
+   "h": 36,
+   "lines": [
+    "Kiểm tra"
+   ],
+   "font_size": 12,
+   "bold_first": false,
+   "fill": "#F2F4F7",
+   "stroke": "#5A626E",
+   "text_color": "#1B1F24"
+  },
+  {
+   "id": "a5",
+   "kind": "lifeline",
+   "x": 576.6,
+   "y": 72,
+   "w": 92,
+   "h": 36,
+   "lines": [
+    "Chuẩn hóa"
+   ],
+   "font_size": 12,
+   "bold_first": false,
+   "fill": "#F2F4F7",
+   "stroke": "#5A626E",
+   "text_color": "#1B1F24"
+  },
+  {
+   "id": "p",
+   "kind": "person",
+   "x": 688.0,
+   "y": 58,
+   "w": 92,
+   "h": 50,
+   "lines": [
+    "Người duyệt"
+   ],
+   "font_size": 12,
+   "bold_first": false
+  },
+  {
+   "id": "bar_a1_0",
+   "x": 173.3,
+   "y": 153,
+   "w": 8,
+   "h": 30,
+   "kind": "execution",
+   "lines": [],
+   "of": "a1",
+   "on_guide": true,
+   "standalone": true,
+   "fill": "#E5E8ED",
+   "stroke": "#5A626E"
+  },
+  {
+   "id": "bar_a2_0",
+   "x": 284.7,
+   "y": 245,
+   "w": 8,
+   "h": 30,
+   "kind": "execution",
+   "lines": [],
+   "of": "a2",
+   "on_guide": true,
+   "standalone": true,
+   "fill": "#E5E8ED",
+   "stroke": "#5A626E"
+  },
+  {
+   "id": "bar_a3_0",
+   "x": 396.0,
+   "y": 305,
+   "w": 8,
+   "h": 30,
+   "kind": "execution",
+   "lines": [],
+   "of": "a3",
+   "on_guide": true,
+   "standalone": true,
+   "fill": "#E5E8ED",
+   "stroke": "#5A626E"
+  },
+  {
+   "id": "bar_a2_1",
+   "x": 284.7,
+   "y": 495,
+   "w": 8,
+   "h": 30,
+   "kind": "execution",
+   "lines": [],
+   "of": "a2",
+   "on_guide": true,
+   "standalone": true,
+   "fill": "#E5E8ED",
+   "stroke": "#5A626E"
+  },
+  {
+   "id": "bar_a5_0",
+   "x": 618.6,
+   "y": 593,
+   "w": 8,
+   "h": 30,
+   "kind": "execution",
+   "lines": [],
+   "of": "a5",
+   "on_guide": true,
+   "standalone": true,
+   "fill": "#E5E8ED",
+   "stroke": "#5A626E"
+  },
+  {
+   "id": "bar_p_0",
+   "x": 730.0,
+   "y": 653,
+   "w": 8,
+   "h": 30,
+   "kind": "execution",
+   "lines": [],
+   "of": "p",
+   "on_guide": true,
+   "standalone": true,
+   "fill": "#E5E8ED",
+   "stroke": "#5A626E"
+  },
+  {
+   "id": "bar_o_0",
+   "x": 62.0,
+   "y": 145,
+   "w": 8,
+   "h": 576,
+   "kind": "execution",
+   "lines": [],
+   "of": "o",
+   "on_guide": true,
+   "standalone": true,
+   "fill": "#E5E8ED",
+   "stroke": "#5A626E"
+  },
+  {
+   "id": "alt",
+   "kind": "fragment",
+   "container": true,
+   "x": 20,
+   "y": 441,
+   "w": 760,
+   "h": 286,
+   "lines": []
+  }
+ ],
+ "edges": [
+  {
+   "id": "m1",
+   "from": "o",
+   "to": "a1",
+   "anchor": "guide",
+   "points": [
+    [
+     70.0,
+     153
+    ],
+    [
+     173.3,
+     153
+    ]
+   ],
+   "kind": "sync",
+   "label": [
+    "Lệnh chạy",
+    "+ baseline KPI"
+   ],
+   "label_mask": true,
+   "label_box": [
+    75.3,
+    113.8,
+    92.6,
+    35.2
+   ]
+  },
+  {
+   "id": "m2",
+   "from": "a1",
+   "to": "o",
+   "anchor": "guide",
+   "points": [
+    [
+     173.3,
+     183
+    ],
+    [
+     70.0,
+     183
+    ]
+   ],
+   "kind": "reply",
+   "label": [
+    "anomaly_report"
+   ],
+   "label_mask": true,
+   "label_box": [
+    71.4,
+    159.4,
+    100.5,
+    19.6
+   ],
+   "line": "solid"
+  },
+  {
+   "id": "m3",
+   "from": "o",
+   "to": "o",
+   "anchor": "guide",
+   "points": [
+    [
+     70.0,
+     197
+    ],
+    [
+     104.0,
+     197
+    ],
+    [
+     104.0,
+     215
+    ],
+    [
+     70.0,
+     215
+    ]
+   ],
+   "kind": "sync",
+   "label": [
+    "kiểm tra schema, ghi log"
+   ],
+   "label_mask": true,
+   "label_box": [
+    110.0,
+    196.2,
+    155.2,
+    19.6
+   ]
+  },
+  {
+   "id": "m4",
+   "from": "o",
+   "to": "a2",
+   "anchor": "guide",
+   "points": [
+    [
+     70.0,
+     245
+    ],
+    [
+     284.7,
+     245
+    ]
+   ],
+   "kind": "sync",
+   "label": [
+    "anomaly_report"
+   ],
+   "label_mask": true,
+   "label_box": [
+    127.1,
+    221.4,
+    100.5,
+    19.6
+   ]
+  },
+  {
+   "id": "m5",
+   "from": "a2",
+   "to": "o",
+   "anchor": "guide",
+   "points": [
+    [
+     284.7,
+     275
+    ],
+    [
+     70.0,
+     275
+    ]
+   ],
+   "kind": "sync",
+   "label": [
+    "root_cause"
+   ],
+   "label_mask": true,
+   "label_box": [
+    141.7,
+    251.4,
+    71.3,
+    19.6
+   ]
+  },
+  {
+   "id": "m6",
+   "from": "o",
+   "to": "a3",
+   "anchor": "guide",
+   "points": [
+    [
+     70.0,
+     305
+    ],
+    [
+     396.0,
+     305
+    ]
+   ],
+   "kind": "sync",
+   "label": [
+    "root_cause + SOP hiện hành"
+   ],
+   "label_mask": true,
+   "label_box": [
+    144.5,
+    281.4,
+    177.0,
+    19.6
+   ]
+  },
+  {
+   "id": "m7",
+   "from": "a3",
+   "to": "o",
+   "anchor": "guide",
+   "points": [
+    [
+     396.0,
+     335
+    ],
+    [
+     70.0,
+     320
+    ]
+   ],
+   "kind": "reply",
+   "label": [
+    "change_proposal"
+   ],
+   "label_mask": true,
+   "label_box": [
+    179.1,
+    311.4,
+    107.7,
+    19.6
+   ]
+  },
+  {
+   "id": "m8",
+   "from": "o",
+   "to": "o",
+   "anchor": "guide",
+   "points": [
+    [
+     70.0,
+     349
+    ],
+    [
+     104.0,
+     349
+    ],
+    [
+     104.0,
+     367
+    ],
+    [
+     70.0,
+     367
+    ]
+   ],
+   "kind": "sync",
+   "label": [
+    "chạy replay cấu hình cũ và mới"
+   ],
+   "label_mask": true,
+   "label_box": [
+    110.0,
+    348.2,
+    193.8,
+    19.6
+   ]
+  },
+  {
+   "id": "m9",
+   "from": "o",
+   "to": "a4",
+   "anchor": "guide",
+   "points": [
+    [
+     70.0,
+     397
+    ],
+    [
+     507.3,
+     397
+    ]
+   ],
+   "kind": "sync",
+   "label": [
+    "change_proposal + kết quả replay"
+   ],
+   "label_mask": true,
+   "label_box": [
+    182.6,
+    373.4,
+    212.2,
+    19.6
+   ]
+  },
+  {
+   "id": "m10",
+   "from": "a4",
+   "to": "o",
+   "anchor": "guide",
+   "points": [
+    [
+     507.3,
+     427
+    ],
+    [
+     70.0,
+     427
+    ]
+   ],
+   "kind": "reply",
+   "label": [
+    "verdict"
+   ],
+   "label_mask": true,
+   "label_box": [
+    264.9,
+    403.4,
+    47.5,
+    19.6
+   ]
+  },
+  {
+   "id": "m11",
+   "from": "o",
+   "to": "a2",
+   "anchor": "guide",
+   "points": [
+    [
+     70.0,
+     495
+    ],
+    [
+     284.7,
+     495
+    ]
+   ],
+   "kind": "sync",
+   "label": [
+    "verdict + yêu cầu phân tích lại"
+   ],
+   "label_mask": true,
+   "label_box": [
+    82.1,
+    471.4,
+    190.5,
+    19.6
+   ]
+  },
+  {
+   "id": "m12",
+   "from": "a2",
+   "to": "o",
+   "anchor": "guide",
+   "points": [
+    [
+     284.7,
+     525
+    ],
+    [
+     70.0,
+     525
+    ]
+   ],
+   "kind": "reply",
+   "label": [
+    "root_cause mới"
+   ],
+   "label_mask": true,
+   "label_box": [
+    128.6,
+    501.4,
+    97.4,
+    19.6
+   ]
+  },
+  {
+   "id": "m13",
+   "from": "o",
+   "to": "a5",
+   "anchor": "guide",
+   "points": [
+    [
+     70.0,
+     593
+    ],
+    [
+     618.6,
+     593
+    ]
+   ],
+   "kind": "sync",
+   "label": [
+    "verdict + change_proposal"
+   ],
+   "label_mask": true,
+   "label_box": [
+    260.8,
+    569.4,
+    166.9,
+    19.6
+   ]
+  },
+  {
+   "id": "m14",
+   "from": "a5",
+   "to": "o",
+   "anchor": "guide",
+   "points": [
+    [
+     618.6,
+     623
+    ],
+    [
+     70.0,
+     623
+    ]
+   ],
+   "kind": "reply",
+   "label": [
+    "SOP mới"
+   ],
+   "label_mask": true,
+   "label_box": [
+    316.1,
+    599.4,
+    56.5,
+    19.6
+   ]
+  },
+  {
+   "id": "m15",
+   "from": "o",
+   "to": "p",
+   "anchor": "guide",
+   "points": [
+    [
+     70.0,
+     653
+    ],
+    [
+     730.0,
+     653
+    ]
+   ],
+   "kind": "sync",
+   "label": [
+    "yêu cầu duyệt SOP mới"
+   ],
+   "label_mask": true,
+   "label_box": [
+    327.0,
+    629.4,
+    146.0,
+    19.6
+   ]
+  },
+  {
+   "id": "m16",
+   "from": "o",
+   "to": "p",
+   "anchor": "guide",
+   "points": [
+    [
+     70.0,
+     683
+    ],
+    [
+     730.0,
+     683
+    ]
+   ],
+   "kind": "reply",
+   "label": [
+    "đồng ý"
+   ],
+   "label_mask": true,
+   "label_box": [
+    376.4,
+    659.4,
+    47.1,
+    19.6
+   ]
+  },
+  {
+   "id": "m17",
+   "from": "o",
+   "to": "o",
+   "anchor": "guide",
+   "points": [
+    [
+     70.0,
+     697
+    ],
+    [
+     104.0,
+     697
+    ],
+    [
+     104.0,
+     715
+    ],
+    [
+     70.0,
+     715
+    ]
+   ],
+   "kind": "sync",
+   "label": [
+    "áp dụng SOP mới"
+   ],
+   "label_mask": true,
+   "label_box": [
+    110.0,
+    696.2,
+    109.6,
+    19.6
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "id": "tag_alt",
+   "role": "operator",
+   "x": 20,
+   "y": 441,
+   "w": 30,
+   "h": 20,
+   "font_size": 12,
+   "lines": [
+    "if"
+   ]
+  },
+  {
+   "id": "g1",
+   "role": "guard",
+   "x": 78,
+   "y": 443,
+   "w": 91,
+   "h": 20,
+   "font_size": 12,
+   "lines": [
+    "[chưa đạt]"
+   ]
+  },
+  {
+   "id": "g2",
+   "role": "guard",
+   "x": 78,
+   "y": 543,
+   "w": 91,
+   "h": 20,
+   "font_size": 12,
+   "lines": [
+    "đạt"
+   ]
+  },
+  {
+   "id": "title",
+   "role": "title",
+   "x": 20,
+   "y": 20,
+   "w": 600,
+   "h": 30,
+   "font_size": 16,
+   "lines": [
+    "Sequence: giao tiếp giữa các agent trong vòng PDCA"
+   ]
+  }
+ ],
+ "guides": [
+  {
+   "id": "life_o",
+   "of": "o",
+   "points": [
+    [
+     66.0,
+     108
+    ],
+    [
+     66.0,
+     735
+    ]
+   ]
+  },
+  {
+   "id": "life_a1",
+   "of": "a1",
+   "points": [
+    [
+     177.3,
+     108
+    ],
+    [
+     177.3,
+     735
+    ]
+   ]
+  },
+  {
+   "id": "life_a2",
+   "of": "a2",
+   "points": [
+    [
+     288.7,
+     108
+    ],
+    [
+     288.7,
+     735
+    ]
+   ]
+  },
+  {
+   "id": "life_a3",
+   "of": "a3",
+   "points": [
+    [
+     400.0,
+     108
+    ],
+    [
+     400.0,
+     735
+    ]
+   ]
+  },
+  {
+   "id": "life_a4",
+   "of": "a4",
+   "points": [
+    [
+     511.3,
+     108
+    ],
+    [
+     511.3,
+     735
+    ]
+   ]
+  },
+  {
+   "id": "life_p",
+   "of": "p",
+   "points": [
+    [
+     734.0,
+     108
+    ],
+    [
+     734.0,
+     735
+    ]
+   ]
+  },
+  {
+   "id": "div_alt",
+   "points": [
+    [
+     20,
+     535
+    ],
+    [
+     780,
+     535
+    ]
+   ]
+  }
+ ]
+}

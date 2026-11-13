@@ -1,0 +1,232 @@
+{
+ "title": "Use case: hệ thống đặt hàng",
+ "type": "uml-use-case",
+ "view_width": 800,
+ "canvas": {
+  "w": 800,
+  "h": 420
+ },
+ "nodes": [
+  {
+   "id": "sys",
+   "kind": "subject",
+   "container": true,
+   "x": 20,
+   "y": 70,
+   "w": 650,
+   "h": 320,
+   "lines": [
+    "Hệ thống đặt hàng"
+   ]
+  },
+  {
+   "id": "find",
+   "kind": "use-case",
+   "parent": "sys",
+   "x": 220,
+   "y": 118,
+   "w": 170,
+   "h": 56,
+   "lines": [
+    "Tìm sản phẩm"
+   ],
+   "bold_first": false,
+   "shape": "rounded"
+  },
+  {
+   "id": "order",
+   "kind": "use-case",
+   "parent": "sys",
+   "x": 220,
+   "y": 214,
+   "w": 170,
+   "h": 56,
+   "lines": [
+    "Đặt hàng"
+   ],
+   "bold_first": false
+  },
+  {
+   "id": "pay",
+   "kind": "use-case",
+   "parent": "sys",
+   "x": 480,
+   "y": 214,
+   "w": 170,
+   "h": 56,
+   "lines": [
+    "Thanh toán"
+   ],
+   "bold_first": false
+  },
+  {
+   "id": "coupon",
+   "kind": "use-case",
+   "parent": "sys",
+   "x": 480,
+   "y": 310,
+   "w": 170,
+   "h": 56,
+   "lines": [
+    "Áp mã giảm giá"
+   ],
+   "bold_first": false
+  },
+  {
+   "id": "cust",
+   "kind": "actor",
+   "x": 20,
+   "y": 150,
+   "w": 110,
+   "h": 90,
+   "lines": [
+    "Khách hàng"
+   ],
+   "bold_first": false
+  },
+  {
+   "id": "gate",
+   "kind": "actor",
+   "x": 680,
+   "y": 197,
+   "w": 100,
+   "h": 90,
+   "lines": [
+    "Cổng",
+    "thanh toán"
+   ],
+   "bold_first": false
+  }
+ ],
+ "edges": [
+  {
+   "id": "a1",
+   "kind": "association",
+   "from": "cust",
+   "to": "find",
+   "points": [
+    [
+     130,
+     185
+    ],
+    [
+     220,
+     146
+    ]
+   ]
+  },
+  {
+   "id": "a2",
+   "kind": "association",
+   "from": "cust",
+   "to": "order",
+   "points": [
+    [
+     130,
+     205
+    ],
+    [
+     220,
+     242
+    ]
+   ]
+  },
+  {
+   "id": "a3",
+   "kind": "generalization",
+   "from": "pay",
+   "to": "gate",
+   "points": [
+    [
+     650,
+     242
+    ],
+    [
+     680,
+     242
+    ]
+   ]
+  },
+  {
+   "id": "i1",
+   "kind": "include",
+   "from": "order",
+   "to": "pay",
+   "points": [
+    [
+     390,
+     242
+    ],
+    [
+     480,
+     242
+    ]
+   ],
+   "label": "«include»",
+   "label_box": [
+    400,
+    218,
+    70,
+    20
+   ],
+   "line": "solid"
+  },
+  {
+   "id": "x1",
+   "kind": "extend",
+   "from": "coupon",
+   "to": "order",
+   "points": [
+    [
+     480,
+     338
+    ],
+    [
+     305,
+     338
+    ],
+    [
+     305,
+     270
+    ]
+   ],
+   "label": "extend",
+   "label_box": [
+    358,
+    314,
+    70,
+    20
+   ]
+  },
+  {
+   "id": "a4",
+   "kind": "association",
+   "from": "find",
+   "to": "order",
+   "points": [
+    [
+     305,
+     174
+    ],
+    [
+     305,
+     214
+    ]
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "id": "t",
+   "role": "title",
+   "x": 20,
+   "y": 20,
+   "w": 400,
+   "h": 34,
+   "font_size": 20,
+   "lines": [
+    "Use case: hệ thống đặt hàng"
+   ]
+  }
+ ]
+}
